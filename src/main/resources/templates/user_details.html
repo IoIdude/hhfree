@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Моя информация</title>
+
+    <style>
+        .table {
+            width: 100%;
+            border: none;
+            margin-bottom: 20px;
+        }
+        th {
+            color: #d8d8d8;
+        }
+        td {
+            color: #d8d8d8;
+        }
+        .table thead th {
+            font-weight: bold;
+            text-align: center;
+            border: none;
+            padding: 10px 15px;
+            background: #d8d8d8;
+            font-size: 14px;
+        }
+        .table thead tr th:first-child {
+            border-radius: 8px 0 0 8px;
+        }
+        .table thead tr th:last-child {
+            border-radius: 0 8px 8px 0;
+        }
+        .table tbody td {
+            font-weight: bold;
+            text-align: center;
+            border: none;
+            padding: 10px 15px;
+            font-size: 14px;
+            vertical-align: top;
+        }
+        .table tbody tr:nth-child(even){
+            background: #f3f3f3;
+        }
+        .table tbody tr td:first-child {
+            border-radius: 8px 0 0 8px;
+        }
+        .table tbody tr td:last-child {
+            border-radius: 0 8px 8px 0;
+        }
+
+        a:link, a:visited {
+            background-color: white;
+            color: #d8d8d8;
+            border: 2px solid #d8d8d8;
+            border-radius: 20px;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        a:hover, a:active {
+            background-color: #d8d8d8;
+            color: white;
+        }
+
+        input {
+            background-color: white;
+            color: #d8d8d8;
+            border: 2px solid #d8d8d8;
+            border-radius: 20px;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        input:hover, input:active {
+            background-color: #d8d8d8;
+            color: white;
+        }
+
+        button {
+            background-color: white;
+            color: #d8d8d8;
+            border: 2px solid #d8d8d8;
+            border-radius: 20px;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        button:hover, button:active {
+            background-color: #d8d8d8;
+            color: white;
+        }
+
+        select {
+            background-color: white;
+            color: #d8d8d8;
+            border: 2px solid #d8d8d8;
+            border-radius: 20px;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        select:hover, button:active {
+            background-color: #d8d8d8;
+            color: white;
+        }
+
+        p {
+            text-align: center;
+            color: #d8d8d8;
+        }
+
+        .action_two{
+            position: absolute;
+            left: 46.5%;
+            width:400px;
+            height:70px;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <a href="/home">Назад</a>
+    <H2 style="text-align: center; color: #d8d8d8">Обо мне</H2>
+</div>
+<p>Логин: </p><p th:text="${user.login}" />
+<p>Фамилия: </p><p th:text="${user.surname}" />
+<p>Имя: </p><p th:text="${user.first_name}" />
+<p>Отчество: </p><p th:text="${user.middle_name}" />
+<p>Возраст: </p><p th:text="${user.age}" />
+<p>Гражданство: </p><p th:text="${user.getCitizenship_id()} ? ${user.getCitizenship_id().getNameCitizenship()} : 'Не установлено'" />
+<p>Город: </p><p th:text="${user.getCountry_id()} ? ${user.getCountry_id().getCountryName()} : 'Не установлено'" />
+<p>Образование: </p><p th:text="${user.getEducation_id()} ? ${user.getEducation_id().getEducationName()} : 'Не установлено'" />
+<p>Занятость: </p><p th:text="${user.getEmployment_id()} ? ${user.getEmployment_id().getEmploymentName()} : 'Не установлено'" />
+<p>Должность: </p><p th:text="${user.getPositionId()} ? ${user.getPositionId().getPositionName()} : 'Не установлено'" />
+<p>Сфера: </p><p th:text="${user.getSphere_id()} ? ${user.getSphere_id().getSphereName()} : 'Не установлено'" />
+<p>Статус: </p><p th:text="${user.getStatus_id()} ? ${user.getStatus_id().getNameStatus()} : 'Не установлено'" />
+<div class="action_two">
+<form method="get" action="/edit_user_details" th:object="${user}">
+    <input type="submit" value="Изменить">
+</form>
+</div>
+</body>
+</html>

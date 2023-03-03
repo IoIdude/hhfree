@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Авторизация</title>
+
+    <style>
+        .table {
+            width: 100%;
+            border: none;
+            margin-bottom: 20px;
+        }
+        th {
+            color: #d8d8d8;
+        }
+        td {
+            color: #d8d8d8;
+        }
+        .table thead th {
+            font-weight: bold;
+            text-align: center;
+            border: none;
+            padding: 10px 15px;
+            background: #d8d8d8;
+            font-size: 14px;
+        }
+        .table thead tr th:first-child {
+            border-radius: 8px 0 0 8px;
+        }
+        .table thead tr th:last-child {
+            border-radius: 0 8px 8px 0;
+        }
+        .table tbody td {
+            font-weight: bold;
+            text-align: center;
+            border: none;
+            padding: 10px 15px;
+            font-size: 14px;
+            vertical-align: top;
+        }
+        .table tbody tr:nth-child(even){
+            background: #f3f3f3;
+        }
+        .table tbody tr td:first-child {
+            border-radius: 8px 0 0 8px;
+        }
+        .table tbody tr td:last-child {
+            border-radius: 0 8px 8px 0;
+        }
+
+        a:link, a:visited {
+            background-color: white;
+            color: #d8d8d8;
+            border: 2px solid #d8d8d8;
+            border-radius: 20px;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        a:hover, a:active {
+            background-color: #d8d8d8;
+            color: white;
+        }
+
+        input {
+            background-color: white;
+            color: #d8d8d8;
+            border: 2px solid #d8d8d8;
+            border-radius: 20px;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        input:hover, input:active {
+            background-color: #d8d8d8;
+            color: white;
+        }
+
+        button {
+            background-color: white;
+            color: #d8d8d8;
+            border: 2px solid #d8d8d8;
+            border-radius: 20px;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        button:hover, button:active {
+            background-color: #d8d8d8;
+            color: white;
+        }
+
+        select {
+            background-color: white;
+            color: #d8d8d8;
+            border: 2px solid #d8d8d8;
+            border-radius: 20px;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        select:hover, button:active {
+            background-color: #d8d8d8;
+            color: white;
+        }
+
+        #action_one{
+            position: absolute;
+            left: 35%;
+        }
+    </style>
+</head>
+<body>
+<H2 style="text-align: center; color: #d8d8d8">Авторизация</H2>
+<div th:if="${param.error}">
+    Неверный логин или пароль.
+</div>
+<div th:if="${param.logout}">
+    Вы вышли.
+</div>
+<form id="action_one" th:action="@{/login}" method="post">
+    <input type="text" name="username" placeholder="Логин"/>
+    <input type="password" name="password" placeholder="Пароль"/>
+    <input type="submit" value="Войти"/>
+</form>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div style="text-align: center">
+    <a href="/">Зарегистрироваться</a>
+</div>
+</body>
+</html>

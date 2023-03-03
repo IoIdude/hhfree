@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Работы</title>
+
+    <style>
+        .table {
+            width: 100%;
+            border: none;
+            margin-bottom: 20px;
+        }
+        th {
+            color: #d8d8d8;
+        }
+        td {
+            color: #d8d8d8;
+        }
+        .table thead th {
+            font-weight: bold;
+            text-align: center;
+            border: none;
+            padding: 10px 15px;
+            background: #d8d8d8;
+            font-size: 14px;
+        }
+        .table thead tr th:first-child {
+            border-radius: 8px 0 0 8px;
+        }
+        .table thead tr th:last-child {
+            border-radius: 0 8px 8px 0;
+        }
+        .table tbody td {
+            font-weight: bold;
+            text-align: center;
+            border: none;
+            padding: 10px 15px;
+            font-size: 14px;
+            vertical-align: top;
+        }
+        .table tbody tr:nth-child(even){
+            background: #f3f3f3;
+        }
+        .table tbody tr td:first-child {
+            border-radius: 8px 0 0 8px;
+        }
+        .table tbody tr td:last-child {
+            border-radius: 0 8px 8px 0;
+        }
+
+        a:link, a:visited {
+            background-color: white;
+            color: #d8d8d8;
+            border: 2px solid #d8d8d8;
+            border-radius: 20px;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        a:hover, a:active {
+            background-color: #d8d8d8;
+            color: white;
+        }
+
+        input {
+            background-color: white;
+            color: #d8d8d8;
+            border: 2px solid #d8d8d8;
+            border-radius: 20px;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        input:hover, input:active {
+            background-color: #d8d8d8;
+            color: white;
+        }
+
+        button {
+            background-color: white;
+            color: #d8d8d8;
+            border: 2px solid #d8d8d8;
+            border-radius: 20px;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        button:hover, button:active {
+            background-color: #d8d8d8;
+            color: white;
+        }
+
+        select {
+            background-color: white;
+            color: #d8d8d8;
+            border: 2px solid #d8d8d8;
+            border-radius: 20px;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        select:hover, button:active {
+            background-color: #d8d8d8;
+            color: white;
+        }
+
+        #search_form{
+            margin-bottom: 40%;
+            position: absolute;
+            left: 41%;
+            width:300px;
+            height:70px;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <a href="/home">Назад</a>
+    <H2 style="text-align: center; color: #d8d8d8">Списоок работ</H2>
+</div>
+<div id="search_form">
+    <form method="get" action="/work_request">
+        <label>
+            <input type="text" name="search" th:value="${search}">
+        </label>
+        <button type="submit">Найти</button>
+    </form>
+</div>
+<br>
+<br>
+<br>
+<table class="table">
+    <tr>
+        <th>Название</th>
+        <th>Компания</th>
+        <th>Вакансия</th>
+    </tr>
+    <tr th:each="el: ${works}">
+        <td th:text="${el.getWorkName()}"></td>
+        <td th:text="${el.getCompany_id().getName()}"></td>
+        <td th:text="${el.getWorkDetailsId().getPositionId().getPositionName()}"></td>
+        <td>
+            <a th:href="'/index/' + ${el.getId}">Подробнее</a>
+        </td>
+        <td>
+            <a th:href="'/delete_work/' + ${el.getId}">Удалить</a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

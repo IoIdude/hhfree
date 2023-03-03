@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Подробнее о работе</title>
+
+    <style>
+        .table {
+            width: 100%;
+            border: none;
+            margin-bottom: 20px;
+        }
+        th {
+            color: #d8d8d8;
+        }
+        td {
+            color: #d8d8d8;
+        }
+        .table thead th {
+            font-weight: bold;
+            text-align: center;
+            border: none;
+            padding: 10px 15px;
+            background: #d8d8d8;
+            font-size: 14px;
+        }
+        .table thead tr th:first-child {
+            border-radius: 8px 0 0 8px;
+        }
+        .table thead tr th:last-child {
+            border-radius: 0 8px 8px 0;
+        }
+        .table tbody td {
+            font-weight: bold;
+            text-align: center;
+            border: none;
+            padding: 10px 15px;
+            font-size: 14px;
+            vertical-align: top;
+        }
+        .table tbody tr:nth-child(even){
+            background: #f3f3f3;
+        }
+        .table tbody tr td:first-child {
+            border-radius: 8px 0 0 8px;
+        }
+        .table tbody tr td:last-child {
+            border-radius: 0 8px 8px 0;
+        }
+
+        a:link, a:visited {
+            background-color: white;
+            color: #d8d8d8;
+            border: 2px solid #d8d8d8;
+            border-radius: 20px;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        a:hover, a:active {
+            background-color: #d8d8d8;
+            color: white;
+        }
+
+        input {
+            background-color: white;
+            color: #d8d8d8;
+            border: 2px solid #d8d8d8;
+            border-radius: 20px;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        input:hover, input:active {
+            background-color: #d8d8d8;
+            color: white;
+        }
+
+        button {
+            background-color: white;
+            color: #d8d8d8;
+            border: 2px solid #d8d8d8;
+            border-radius: 20px;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        button:hover, button:active {
+            background-color: #d8d8d8;
+            color: white;
+        }
+
+        select {
+            background-color: white;
+            color: #d8d8d8;
+            border: 2px solid #d8d8d8;
+            border-radius: 20px;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        select:hover, button:active {
+            background-color: #d8d8d8;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<div>
+<a href="/home">Назад</a>
+    <H2 style="text-align: center; color: #d8d8d8">О работе</H2>
+    </div>
+<br>
+<table class="table">
+    <tr>
+        <th>Название</th>
+        <th>Компания</th>
+        <th>Вакансия</th>
+        <th>Информация</th>
+        <th>Сфера</th>
+        <th>Город</th>
+        <th>Образование</th>
+        <th>Занятоость</th>
+    </tr>
+    <tr th:each="el: ${work}">
+        <td th:text="${el.getWorkName()}"></td>
+        <td th:text="${el.getCompany_id().getName()}"></td>
+        <td th:text="${el.getWorkDetailsId().getPositionId().getPositionName()}"></td>
+        <td th:text="${el.getWorkDetailsId().getInfo()}"></td>
+        <td th:text="${el.getWorkDetailsId().getSphere_id().getSphereName()}"></td>
+        <td th:text="${el.getWorkDetailsId().getCountry_id().getCountryName()}"></td>
+        <td th:text="${el.getWorkDetailsId().getEducation_id().getEducationName()}"></td>
+        <td th:text="${el.getWorkDetailsId().getEmployment_id().getEmploymentName()}"></td>
+    </tr>
+</table>
+</body>
+</html>

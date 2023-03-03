@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактирование поользователя</title>
+
+    <style>
+        .table {
+            width: 100%;
+            border: none;
+            margin-bottom: 20px;
+        }
+        th {
+            color: #d8d8d8;
+        }
+        td {
+            color: #d8d8d8;
+        }
+        .table thead th {
+            font-weight: bold;
+            text-align: center;
+            border: none;
+            padding: 10px 15px;
+            background: #d8d8d8;
+            font-size: 14px;
+        }
+        .table thead tr th:first-child {
+            border-radius: 8px 0 0 8px;
+        }
+        .table thead tr th:last-child {
+            border-radius: 0 8px 8px 0;
+        }
+        .table tbody td {
+            font-weight: bold;
+            text-align: center;
+            border: none;
+            padding: 10px 15px;
+            font-size: 14px;
+            vertical-align: top;
+        }
+        .table tbody tr:nth-child(even){
+            background: #f3f3f3;
+        }
+        .table tbody tr td:first-child {
+            border-radius: 8px 0 0 8px;
+        }
+        .table tbody tr td:last-child {
+            border-radius: 0 8px 8px 0;
+        }
+
+        a:link, a:visited {
+            background-color: white;
+            color: #d8d8d8;
+            border: 2px solid #d8d8d8;
+            border-radius: 20px;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        a:hover, a:active {
+            background-color: #d8d8d8;
+            color: white;
+        }
+
+        input {
+            background-color: white;
+            color: #d8d8d8;
+            border: 2px solid #d8d8d8;
+            border-radius: 20px;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        input:hover, input:active {
+            background-color: #d8d8d8;
+            color: white;
+        }
+
+        button {
+            background-color: white;
+            color: #d8d8d8;
+            border: 2px solid #d8d8d8;
+            border-radius: 20px;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        button:hover, button:active {
+            background-color: #d8d8d8;
+            color: white;
+        }
+
+        select {
+            background-color: white;
+            color: #d8d8d8;
+            border: 2px solid #d8d8d8;
+            border-radius: 20px;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        select:hover, button:active {
+            background-color: #d8d8d8;
+            color: white;
+        }
+
+        .action_one{
+            width:135px;
+            height:70px;
+        }
+
+        .action_one select{
+            position: absolute;
+            left: 45%;
+        }
+
+        .action_one input{
+            position: absolute;
+            left: 43.5%;
+        }
+
+        .action_one label{
+            position: absolute;
+            left: 35%;
+        }
+
+        .action_two{
+            position: absolute;
+            left: 47%;
+            width:400px;
+            height:70px;
+        }
+
+        label {
+            color: #d8d8d8;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <a href="/home">Назад</a>
+    <H2 style="text-align: center; color: #d8d8d8">Редактирование пользователя</H2>
+</div>
+<br>
+<form method="post" action="/edit_user_details" th:object="${user}">
+    <input type="hidden" th:field="*{id}" id="id" th:value="${user.id}" hidden>
+    <div class="action_one">
+        <label for="login">Логин</label>
+        <input type="text" th:field="*{login}" id="login" th:value="${user.login}" required>
+        <div th:if="${#fields.hasErrors('login')}" th:errors="*{login}">Nick-Error</div>
+    </div>
+    <div class="action_one">
+        <label for="password">Пароль</label>
+        <input type="text" th:field="*{password}" id="password" required>
+        <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Nick-Error</div>
+    </div>
+    <div class="action_one">
+        <label for="age">Возраст</label>
+        <input type="number" th:field="*{age}" id="age" th:value="${user.age}" required>
+        <div th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Nick-Error</div>
+    </div>
+    <div class="action_one">
+        <label for="surname">Фамилия</label>
+        <input type="text" th:field="*{surname}" id="surname" th:value="${user.surname}" required>
+        <div th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}">Nick-Error</div>
+    </div>
+    <div class="action_one">
+        <label for="first_name">Имя</label>
+        <input type="text" th:field="*{first_name}" id="first_name" th:value="${user.first_name}" required>
+        <div th:if="${#fields.hasErrors('first_name')}" th:errors="*{first_name}">Nick-Error</div>
+    </div>
+    <div class="action_one">
+        <label for="middle_name">Отчество</label>
+        <input type="text" th:field="*{middle_name}" id="middle_name" th:value="${user.middle_name}" required>
+        <div th:if="${#fields.hasErrors('middle_name')}" th:errors="*{middle_name}">Nick-Error</div>
+    </div>
+
+    <div class="action_one">
+        <label for="nameCitizenship">Гражданство</label>
+        <select name="nameCitizenship" id="nameCitizenship">
+            <div th:each="element : ${citizenship}">
+                <option th:text="${element.nameCitizenship}"></option>
+            </div>
+        </select>
+    </div>
+    <div class="action_one">
+        <label for="countryName">Город</label>
+        <select name="countryName" id="countryName">
+            <div th:each="element : ${country}">
+                <option th:text="${element.countryName}"></option>
+            </div>
+        </select>
+    </div>
+    <div class="action_one">
+        <label for="educationName">Образование</label>
+        <select name="educationName" id="educationName">
+            <div th:each="element : ${education}">
+                <option th:text="${element.educationName}"></option>
+            </div>
+        </select>
+    </div>
+    <div class="action_one">
+        <label for="employmentName">Занятость</label>
+        <select name="employmentName" id="employmentName">
+            <div th:each="element : ${employment}">
+                <option th:text="${element.employmentName}"></option>
+            </div>
+        </select>
+    </div>
+    <div class="action_one">
+        <label for="positionName">Должность</label>
+        <select name="positionName" id="positionName">
+            <div th:each="element : ${position}">
+                <option th:text="${element.positionName}"></option>
+            </div>
+        </select>
+    </div>
+    <div class="action_one">
+        <label for="sphereName">Сфера</label>
+        <select name="sphereName" id="sphereName">
+            <div th:each="element : ${sphere}">
+                <option th:text="${element.sphereName}"></option>
+            </div>
+        </select>
+    </div>
+    <div class="action_one">
+        <label for="nameStatus">Статус</label>
+        <select name="nameStatus" id="nameStatus">
+            <div th:each="element : ${status}">
+                <option th:text="${element.nameStatus}"></option>
+            </div>
+        </select>
+    </div>
+    <div class="action_two">
+        <input type="submit" value="Отправить">
+    </div>
+</form>
+</body>
+</html>
